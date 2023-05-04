@@ -35,6 +35,17 @@ public class AltManager {
 
 		return manager;
 	}
+	
+	public static void tryLogin(String username) {
+		for (AccountData data : AltDatabase.getInstance().getAlts())
+		{
+			if (data.alias.equals(Minecraft.getMinecraft().getSession().getUsername()) && data.user.equals(username))
+			{
+				AltManager.getInstance().setUser(data.user, data.pass);
+				return;
+			}
+		}
+	}
 
 	public Throwable setUser(String username, String password) {
 		Throwable throwable = null;
